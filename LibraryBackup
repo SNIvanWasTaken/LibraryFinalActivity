@@ -1,0 +1,323 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.2
+-- Dumped by pg_dump version 15.1
+
+-- Started on 2023-02-12 20:28:40
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE "Library";
+--
+-- TOC entry 3354 (class 1262 OID 16398)
+-- Name: Library; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "Library" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'Spanish_Spain.1252';
+
+
+ALTER DATABASE "Library" OWNER TO postgres;
+
+\connect "Library"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 214 (class 1259 OID 16399)
+-- Name: books; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.books (
+    isbn character varying(13) NOT NULL,
+    title character varying(90) NOT NULL,
+    copies integer DEFAULT 1,
+    cover character varying(255),
+    outline character varying(255) NOT NULL,
+    publisher character varying(60)
+);
+
+
+ALTER TABLE public.books OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16405)
+-- Name: lending; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.lending (
+    id integer NOT NULL,
+    lendingdate date NOT NULL,
+    returningdate date,
+    book character varying(13) NOT NULL,
+    borrower character varying(13) NOT NULL
+);
+
+
+ALTER TABLE public.lending OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16408)
+-- Name: lending_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lending_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lending_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3355 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: lending_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lending_id_seq OWNED BY public.lending.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 16409)
+-- Name: reservations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.reservations (
+    book character varying(13) NOT NULL,
+    borrower character varying(7) NOT NULL,
+    date date,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.reservations OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 16442)
+-- Name: reservations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.reservations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.reservations_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3356 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: reservations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.reservations_id_seq OWNED BY public.reservations.id;
+
+
+--
+-- TOC entry 218 (class 1259 OID 16412)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    code character varying(8) NOT NULL,
+    name character varying(25) NOT NULL,
+    surname character varying(25) NOT NULL,
+    birthdate date,
+    fined date
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 3187 (class 2604 OID 16415)
+-- Name: lending id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lending ALTER COLUMN id SET DEFAULT nextval('public.lending_id_seq'::regclass);
+
+
+--
+-- TOC entry 3188 (class 2604 OID 16443)
+-- Name: reservations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reservations ALTER COLUMN id SET DEFAULT nextval('public.reservations_id_seq'::regclass);
+
+
+--
+-- TOC entry 3343 (class 0 OID 16399)
+-- Dependencies: 214
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.books (isbn, title, copies, cover, outline, publisher) VALUES ('1234657890123', 'Ruination', 20, 'hard', 'About the ruin of a land', 'Riot');
+INSERT INTO public.books (isbn, title, copies, cover, outline, publisher) VALUES ('1234567890129', 'KH', 20, NULL, 'Friendship and heart', 'Square');
+INSERT INTO public.books (isbn, title, copies, cover, outline, publisher) VALUES ('1234567890124', 'Convergence', 15, 'weak', 'The merge of different universes', 'Ivan');
+INSERT INTO public.books (isbn, title, copies, cover, outline, publisher) VALUES ('1234567890125', 'Strive', 0, 'hard', 'The adventures of 2 friend gears', 'Arcsys');
+
+
+--
+-- TOC entry 3344 (class 0 OID 16405)
+-- Dependencies: 215
+-- Data for Name: lending; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (18, '2023-01-27', '2023-02-12', '1234567890129', '123456X');
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (19, '2023-02-12', '2023-02-12', '1234567890129', '123456Y');
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (20, '2023-02-12', '2023-02-12', '1234567890125', '123456Y');
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (21, '2023-02-12', '2023-02-12', '1234567890124', '123456Y');
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (22, '2023-02-12', '2023-02-12', '1234567890125', '123456B');
+INSERT INTO public.lending (id, lendingdate, returningdate, book, borrower) VALUES (23, '2023-02-12', NULL, '1234567890125', '123456Y');
+
+
+--
+-- TOC entry 3346 (class 0 OID 16409)
+-- Dependencies: 217
+-- Data for Name: reservations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.reservations (book, borrower, date, id) VALUES ('1234567890125', '123456Z', '2023-02-12', 2);
+INSERT INTO public.reservations (book, borrower, date, id) VALUES ('1234567890125', '123456P', '2023-02-12', 3);
+
+
+--
+-- TOC entry 3347 (class 0 OID 16412)
+-- Dependencies: 218
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.users (code, name, surname, birthdate, fined) VALUES ('123456Y', 'Lucas', 'Luquitas', '2023-02-18', NULL);
+INSERT INTO public.users (code, name, surname, birthdate, fined) VALUES ('123456X', 'Ivan', 'Laguia', '2023-02-01', '2023-02-19');
+INSERT INTO public.users (code, name, surname, birthdate, fined) VALUES ('123456Z', 'Paco', 'Paquito', '2023-02-15', NULL);
+INSERT INTO public.users (code, name, surname, birthdate, fined) VALUES ('123456B', 'Jordi', 'Laguia', '2023-02-09', NULL);
+INSERT INTO public.users (code, name, surname, birthdate, fined) VALUES ('123456P', 'User', 'User', '2023-02-04', NULL);
+
+
+--
+-- TOC entry 3357 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: lending_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lending_id_seq', 23, true);
+
+
+--
+-- TOC entry 3358 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: reservations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.reservations_id_seq', 3, true);
+
+
+--
+-- TOC entry 3190 (class 2606 OID 16417)
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.books
+    ADD CONSTRAINT books_pkey PRIMARY KEY (isbn);
+
+
+--
+-- TOC entry 3192 (class 2606 OID 16419)
+-- Name: lending lending_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lending
+    ADD CONSTRAINT lending_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3194 (class 2606 OID 16448)
+-- Name: reservations reservations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reservations
+    ADD CONSTRAINT reservations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3196 (class 2606 OID 16421)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (code);
+
+
+--
+-- TOC entry 3199 (class 2606 OID 16422)
+-- Name: reservations fk_book; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reservations
+    ADD CONSTRAINT fk_book FOREIGN KEY (book) REFERENCES public.books(isbn);
+
+
+--
+-- TOC entry 3200 (class 2606 OID 16427)
+-- Name: reservations fk_borrower; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.reservations
+    ADD CONSTRAINT fk_borrower FOREIGN KEY (borrower) REFERENCES public.users(code);
+
+
+--
+-- TOC entry 3197 (class 2606 OID 16432)
+-- Name: lending lending_ibfk_1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lending
+    ADD CONSTRAINT lending_ibfk_1 FOREIGN KEY (book) REFERENCES public.books(isbn) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3198 (class 2606 OID 16437)
+-- Name: lending lending_ibfk_2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lending
+    ADD CONSTRAINT lending_ibfk_2 FOREIGN KEY (borrower) REFERENCES public.users(code) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2023-02-12 20:28:40
+
+--
+-- PostgreSQL database dump complete
+--
+

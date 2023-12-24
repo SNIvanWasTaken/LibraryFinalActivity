@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="582.0" style="-fx-background-color: #dba5ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ilm2223.unit5.libraryfinalactivity.Controller">
+   <children>
+      <!-- User window -->
+      <GridPane id="headerGrid" fx:id="headerGrid" layoutY="-2.0" prefHeight="92.0" prefWidth="582.0" style="-fx-background-color: #c673ff;" visible="true">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView id="userButton" fx:id="userButton" fitHeight="88.0" fitWidth="79.0" onMouseClicked="#userButtonClicked" onMousePressed="#userButtonPressed" onMouseReleased="#userButtonReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../userIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="booksButton" fx:id="bookButton" fitHeight="80.0" fitWidth="100.0" onMouseClicked="#bookButtonClicked" onMousePressed="#bookButtonPressed" onMouseReleased="#bookButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../../../bookIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="lendButton" fx:id="lendButton" fitHeight="91.0" fitWidth="117.0" onMouseClicked="#lendButtonClicked" onMousePressed="#lendButtonPressed" onMouseReleased="#lendButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../../../lendIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="returnButton" fx:id="returnButton" fitHeight="91.0" fitWidth="117.0" onMouseClicked="#returnButtonClicked" onMousePressed="#returnButtonPressed" onMouseReleased="#returnButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../../../../returnIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="exitButton" fx:id="exitButton" fitHeight="91.0" fitWidth="117.0" onMouseClicked="#exitButtonClicked" onMousePressed="#exitButtonPressed" onMouseReleased="#exitButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+               <image>
+                  <Image url="@../../../../exitIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="footerGrid" fx:id="footerGrid" disable="false" layoutY="419.0" prefHeight="92.0" prefWidth="582.0" style="-fx-background-color: #c673ff;">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView id="searchButton" fx:id="searchButton" fitHeight="96.0" fitWidth="115.0" onMouseClicked="#searchButtonClicked" onMousePressed="#searchButtonPressed" onMouseReleased="#searchButtonReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../searchIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="addButton" fx:id="addButton" fitHeight="96.0" fitWidth="115.0" onMouseClicked="#addButtonClicked" onMousePressed="#addButtonPressed" onMouseReleased="#addButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@../../../../addIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView id="editButton" fx:id="editButton" fitHeight="96.0" fitWidth="115.0" onMouseClicked="#editButtonClicked" onMousePressed="#editButtonPressed" onMouseReleased="#editButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../../../editIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="deleteButton" fitHeight="91.0" fitWidth="98.0" onMousePressed="#deleteButtonPressed" onMouseReleased="#deleteButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+               <image>
+                  <Image url="@../../../../CancelIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="bodyGrid" fx:id="bodyGrid" layoutY="90.0" prefHeight="323.0" prefWidth="582.0" style="-fx-background-color: #dba5ff;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="114.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="468.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label id="codeLabel" prefHeight="15.0" prefWidth="86.0" text="Code:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="nameLabel" prefHeight="17.0" prefWidth="93.0" text="First Name:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="birthdateLabel" prefHeight="17.0" prefWidth="97.0" text="Birthdate:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="280.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="surnameLabel" prefHeight="17.0" prefWidth="91.0" text="Last Name:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="190.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField id="nameText" fx:id="userNameText" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="95.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="surnameText" fx:id="userSurnameText" prefHeight="25.0" prefWidth="465.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="185.0" />
+               </GridPane.margin>
+            </TextField>
+            <DatePicker id="birthdateDate" fx:id="userBirthdayDate" editable="false" prefHeight="25.0" prefWidth="236.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="275.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <TextField id="codeText" fx:id="userCodeText" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="20.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+      <!-- Lend window -->
+      <GridPane id="lendFooterGrid" fx:id="lendFooterGrid" disable="true" layoutY="419.0" prefHeight="92.0" prefWidth="582.0" style="-fx-background-color: #c673ff;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView id="confirmButton" fx:id="confirmButton" fitHeight="96.0" fitWidth="115.0" onMouseClicked="#confirmButtonClicked" onMousePressed="#confirmButtonPressed" onMouseReleased="#confirmButtonReleased" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../confirmIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancelButton" fitHeight="98.0" fitWidth="111.0" onMousePressed="#cancelButtonPressed" onMouseReleased="#cancelButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+               <image>
+                  <Image url="@../../../../CancelIcon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="lendBodyGrid" fx:id="lendBodyGrid" disable="true" layoutY="90.0" prefHeight="323.0" prefWidth="582.0" style="-fx-background-color: #dba5ff;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="114.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="468.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label id="userLabel" prefHeight="17.0" prefWidth="93.0" text="User:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="60.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="bookLabel" prefHeight="17.0" prefWidth="91.0" text="Book:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="235.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField id="codeText" fx:id="lendUserCodeText" promptText="Type the user code" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="150.0" top="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="userText" fx:id="lendUserNameText" disable="true" prefHeight="25.0" prefWidth="449.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="95.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="isbnText" fx:id="lendTitleText" prefHeight="25.0" prefWidth="465.0" promptText="Type the Title" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="150.0" top="185.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="titleText" fx:id="lendBookTitleText" disable="true" prefHeight="25.0" prefWidth="449.0" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="15.0" top="250.0" />
+               </GridPane.margin>
+            </TextField>
+            <ImageView fx:id="lendUserSearchButton" fitHeight="63.0" fitWidth="64.0" onMousePressed="#lendUserSearchButtonPressed" onMouseReleased="#lendUserSearchButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="50.0" top="5.0" />
+               </GridPane.margin>
+               <image>
+                  <Image url="@../../../../searchIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="lendBookSearchButton" fitHeight="63.0" fitWidth="64.0" onMousePressed="#lendBookSearchButtonPressed" onMouseReleased="#lendBookSearchButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../../../../searchIcon.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="50.0" top="165.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="lendBodyGrid" fx:id="returnBodyGrid" disable="true" layoutY="90.0" prefHeight="323.0" prefWidth="582.0" style="-fx-background-color: #dba5ff;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="114.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="468.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label id="userLabel" prefHeight="17.0" prefWidth="93.0" text="User:" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="80.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="bookLabel" prefHeight="17.0" prefWidth="91.0" text="Book:" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="215.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField id="codeText" fx:id="returnBookUser" promptText="Type the user code" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="150.0" top="40.0" />
+               </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <ImageView fx:id="returnSearchButton" fitHeight="63.0" fitWidth="64.0" onMousePressed="#returnSearchButtonPressed" onMouseReleased="#returnSearchButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="50.0" top="25.0" />
+               </GridPane.margin>
+               <image>
+                  <Image url="@../../../../searchIcon.png" />
+               </image>
+            </ImageView>
+            <TextField id="userText" fx:id="returnUserNameText" disable="true" prefHeight="25.0" prefWidth="449.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="110.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="titleText" fx:id="returnBookTitleText" disable="true" prefHeight="25.0" prefWidth="449.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="15.0" top="200.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="isbnText" fx:id="returnTitleText" prefHeight="25.0" prefWidth="465.0" promptText="Type the Title" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="150.0" top="75.0" />
+               </GridPane.margin>
+            </TextField>
+            <ImageView fx:id="returnBookSearchButton" fitHeight="63.0" fitWidth="64.0" onMousePressed="#returnBookSearchButtonPressed" onMouseReleased="#returnBookSearchButtonReleased" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../searchIcon.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets right="50.0" top="80.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
+      <GridPane id="lendBodyGrid" fx:id="bookBodyGrid" disable="true" layoutY="90.0" prefHeight="323.0" prefWidth="582.0" style="-fx-background-color: #dba5ff;" visible="false">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="286.0" minWidth="10.0" prefWidth="114.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="468.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label id="userLabel" prefHeight="17.0" prefWidth="93.0" text="Title:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="80.0" />
+               </GridPane.margin>
+            </Label>
+            <Label id="bookLabel" prefHeight="17.0" prefWidth="91.0" text="ISBN:" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="215.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField id="codeText" fx:id="bookTitleText" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="75.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField id="codeText" fx:id="bookIsbnText" promptText="Type the ISBN" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="15.0" top="125.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Copies:" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="17.0" left="12.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Outline:">
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="12.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Publisher:" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="12.0" top="15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="bookOutlineText" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="10.0" right="15.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="bookPublisherText" GridPane.columnIndex="1" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="15.0" top="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="bookCopiesText" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="12.0" right="15.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
